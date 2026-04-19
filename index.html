@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 18th Birthday ✨</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: radial-gradient(circle at center, #2a004d 0%, #0f001a 100%);
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      height: 100vh;
+      background: #0f001a;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+
+    .stars {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 4s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 1.8rem;
+      line-height: 1.3;
+      color: #ffd700;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+      opacity: 0;
+      transition: all 1.2s ease;
+      width: 90%;
+    }
+
+    .text.show {
+      opacity: 1;
+    }
+
+    .heart {
+      display: inline-block;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .party {
+      font-size: 2.5rem;
+      animation: partyPop 2s infinite;
+    }
+
+    @keyframes partyPop {
+      0%, 100% { transform: rotate(-10deg) scale(1); }
+      50% { transform: rotate(10deg) scale(1.1); }
+    }
+
+    .birthday-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      opacity: 0;
+      transition: all 1.5s ease;
+    }
+
+    .birthday-card.show {
+      opacity: 1;
+    }
+
+    .birthday-title {
+      font-size: 3.2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcf7f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .emojis {
+      font-size: 2rem;
+      margin: 15px 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .message {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #f0d6ff;
+      padding: 0 20px;
+    }
+
+    .photo-frame {
+      width: 280px;
+      margin: 20px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .surprise {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    .gift {
+      width: 180px;
+      height: 180px;
+      margin: 20px auto;
+      cursor: pointer;
+      transition: transform 0.4s;
+    }
+
+    .gift:hover {
+      transform: scale(1.1);
+    }
+
+    .final {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      opacity: 0;
+    }
+
+    .final.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="stars" id="stars"></div>
+
+    <!-- Sequence 1: Typing messages -->
+    <div class="text" id="text1">Hey...</div>
+    <div class="text" id="text2">Hey... I have something special for you ❤️</div>
+    <div class="text" id="text3">Today is not just any day.</div>
+    <div class="text" id="text4">It's YOUR day 🎉</div>
+
+    <!-- Birthday Card -->
+    <div class="birthday-card" id="birthdayCard">
+      <div class="birthday-title">Happy 18th Birthday</div>
+      <div class="emojis">
+        🎂 🎈 🎉 🎊 🥳
+      </div>
+      <div class="message">
+        Eighteen years of being absolutely wonderful.<br>
+        Today, the world celebrates the day you were born<br>
+        because everything is better with you in it. ❤️
+      </div>
+    </div>
+
+    <!-- Long Message -->
+    <div class="text" id="longMessage" style="font-size: 1.1rem; line-height: 1.7; top: 45%;">
+      Dear you,<br><br>
+      On this beautiful day, I want you to know just how incredibly special you are...<br><br>
+      You have this magical way of making everyone around you feel warm and loved.<br><br>
+      18 years old — can you believe it?<br><br>
+      Never forget: you are enough, you are worthy, and you are so deeply loved.<br><br>
+      With all my love ❤️
+    </div>
+
+    <!-- Memories Section -->
+    <div class="text" id="memories" style="display:none;">
+      <h2 style="color:#ffd700; font-size:2.2rem;">Our Memories</h2>
+      <p style="margin:15px 0; color:#f0d6ff;">Every moment with you is a treasure 💎</p>
+      <!-- You can replace with actual images -->
+      <div style="margin:20px auto; width:260px;">
+        <img src="https://picsum.photos/260/180?random=1" alt="Memory" style="border-radius:12px; width:100%; box-shadow:0 8px 25px rgba(0,0,0,0.7);">
+      </div>
+    </div>
+
+    <!-- Surprise Section -->
+    <div class="surprise" id="surpriseSection">
+      <h2 style="color:#ff69b4; font-size:2.5rem; margin-bottom:10px;">A Little Surprise</h2>
+      <p style="color:#ffd700;">You deserve something special 🎀</p>
+      <div class="gift" id="gift">
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          <rect x="20" y="40" width="140" height="100" rx="10" fill="#ff1493"/>
+          <rect x="20" y="120" width="140" height="30" rx="8" fill="#ff69b4"/>
+          <rect x="45" y="40" width="90" height="15" fill="#ffd700"/>
+          <rect x="82" y="55" width="16" height="85" fill="#ffd700"/>
+          <polygon points="80,130 90,145 100,130" fill="#ff4500"/>
+        </svg>
+      </div>
+      <p style="color:#ffd700; margin-top:10px;">Click for Surprise 🎁</p>
+    </div>
+
+    <!-- Final Message -->
+    <div class="final" id="finalMessage">
+      <div style="font-size:2.8rem; color:#ff69b4;">Once again...</div>
+      <div style="font-size:3.8rem; font-weight:bold; background:linear-gradient(90deg,#ff9a9e,#fad0c4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:15px 0;">
+        Happy Birthday
+      </div>
+      <div style="font-size:1.6rem; color:#fff;">May all your dreams come true ✨</div>
+      <div style="font-size:4rem; margin-top:20px;">❤️</div>
+    </div>
+  </div>
+
+  <script>
+    const texts = [
+      {id: 'text1', delay: 800},
+      {id: 'text2', delay: 3800},
+      {id: 'text3', delay: 7800},
+      {id: 'text4', delay: 11000},
+    ];
+
+    let currentStep = 0;
+
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      for (let i = 0; i < 120; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 3 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animationDelay = `-${Math.random() * 4}s`;
+        starsContainer.appendChild(star);
+      }
+    }
+
+    function showText(id, delay) {
+      setTimeout(() => {
+        document.querySelectorAll('.text').forEach(t => t.classList.remove('show'));
+        document.getElementById(id).classList.add('show');
+      }, delay);
+    }
+
+    function startSequence() {
+      createStars();
+
+      // Step 1: Typing messages
+      texts.forEach((t, index) => {
+        setTimeout(() => {
+          showText(t.id, 0);
+        }, t.delay);
+      });
+
+      // Show Birthday Card
+      setTimeout(() => {
+        document.getElementById('birthdayCard').classList.add('show');
+      }, 14500);
+
+      // Show long message
+      setTimeout(() => {
+        document.getElementById('birthdayCard').style.opacity = '0';
+        document.getElementById('longMessage').classList.add('show');
+      }, 22000);
+
+      // Memories
+      setTimeout(() => {
+        document.getElementById('longMessage').style.opacity = '0';
+        document.getElementById('memories').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('memories').style.opacity = '1';
+        }, 500);
+      }, 30000);
+
+      // Surprise Section
+      setTimeout(() => {
+        document.getElementById('memories').style.opacity = '0';
+        document.getElementById('surpriseSection').style.opacity = '1';
+      }, 38000);
+
+      // Final Message
+      setTimeout(() => {
+        document.getElementById('surpriseSection').style.opacity = '0';
+        document.getElementById('finalMessage').classList.add('show');
+      }, 48000);
+    }
+
+    // Gift click interaction
+    document.getElementById('gift').addEventListener('click', () => {
+      const gift = document.getElementById('gift');
+      gift.style.transition = 'transform 0.6s';
+      gift.style.transform = 'rotate(360deg) scale(1.4)';
+      
+      setTimeout(() => {
+        alert("🎉 Surprise! You are the most wonderful gift in my life! ✨");
+        gift.style.transform = 'rotate(0deg) scale(1)';
+      }, 800);
+    });
+
+    // Start the animation
+    window.onload = startSequence;
+  </script>
+</body>
+  </html>
