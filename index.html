@@ -1,313 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 18th Birthday ✨</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: radial-gradient(circle at center, #2a004d 0%, #0f001a 100%);
-      color: #fff;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title>
 
-    .container {
-      width: 100%;
-      max-width: 420px;
-      height: 100vh;
-      background: #0f001a;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(0,0,0,0.8);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-    .stars {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-    .star {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 3s infinite alternate;
-    }
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #ffd6e8, #ffeaea);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-    @keyframes twinkle {
-      0% { opacity: 0.3; }
-      100% { opacity: 1; }
-    }
+/* Floating hearts */
+.heart {
+  position: absolute;
+  color: #ff4d6d;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+}
 
-    .content {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      transition: transform 1.2s ease-in-out;
-    }
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
 
-    /* Initial Typing Texts */
-    .text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.9rem;
-      color: #ffd700;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
-      opacity: 0;
-      width: 90%;
-    }
+/* Card */
+.card {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  animation: fadeIn 2s ease;
+}
 
-    .text.show { opacity: 1; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
 
-    /* Birthday Card */
-    #birthdayCard {
-      top: 50%;
-      opacity: 0;
-      transition: all 1.5s ease;
-    }
+h1 {
+  font-size: 2.5rem;
+  color: #ff4d6d;
+  margin-bottom: 10px;
+}
 
-    .birthday-title {
-      font-size: 3.4rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcf7f);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 15px;
-    }
+h2 {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
 
-    .emojis {
-      font-size: 2.2rem;
-      margin: 15px 0;
-    }
+.message {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 25px;
+}
 
-    .message {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #f0d6ff;
-      padding: 0 25px;
-    }
+/* Button */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    /* Scrollable Content */
-    .scroll-content {
-      position: absolute;
-      top: 100%;
-      width: 100%;
-      padding: 40px 20px;
-      opacity: 0;
-      transition: all 1.8s ease;
-    }
+button:hover {
+  background: #e63956;
+  transform: scale(1.05);
+}
 
-    .scroll-content.show {
-      opacity: 1;
-      top: 0;
-    }
+/* Hidden surprise */
+.surprise {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #ff4d6d;
+  animation: pop 0.5s ease;
+}
 
-    .heart-float {
-      position: absolute;
-      font-size: 2rem;
-      animation: floatHeart 8s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes floatHeart {
-      0% { transform: translateY(100vh) rotate(0deg); }
-      100% { transform: translateY(-100px) rotate(360deg); }
-    }
-
-    .final {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      opacity: 0;
-      transition: opacity 1.5s ease;
-    }
-
-    .final.show {
-      opacity: 1;
-    }
-
-    .gift {
-      width: 170px;
-      height: 170px;
-      margin: 25px auto;
-      cursor: pointer;
-    }
-  </style>
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="stars" id="stars"></div>
 
-    <!-- Initial Messages -->
-    <div class="text" id="text1">Hey...</div>
-    <div class="text" id="text2">Hey... I have something special for you ❤️</div>
-    <div class="text" id="text3">Today is not just any day.</div>
-    <div class="text" id="text4">It's YOUR day 🎉</div>
-
-    <!-- Birthday Card (appears after "It's YOUR day") -->
-    <div class="content" id="birthdayCard">
-      <div class="birthday-title">Happy 18th Birthday</div>
-      <div class="emojis">🎂 🎈 🎉 🎊 🥳</div>
-      <div class="message">
-        Eighteen years of being absolutely wonderful.<br><br>
-        Today, the world celebrates the day you were born<br>
-        because everything is better with you in it. ❤️
-      </div>
-    </div>
-
-    <!-- Scroll Content (Everything after Birthday Card) -->
-    <div class="scroll-content" id="scrollContent">
-      <div style="color:#ffd700; font-size:1.8rem; margin-bottom:30px;">
-        Dear you,
-      </div>
-      
-      <div style="font-size:1.1rem; line-height:1.75; color:#f0d6ff; text-align:left; max-width:340px; margin:0 auto 40px;">
-        On this beautiful day, I want you to know just how incredibly special you are. Not just today, but every single day that you exist in this world.<br><br>
-        
-        You have this magical way of making everyone around you feel warm and loved. Your smile could light up the darkest room, and your laugh is like music that makes the whole world dance.<br><br>
-        
-        18 years old — can you believe it? You're stepping into a whole new chapter of your life, and I couldn't be more excited for everything that's waiting for you.<br><br>
-        
-        Never forget: you are enough, you are worthy, and you are so deeply loved.<br><br>
-        Here's to 18 years of being amazing, and to a lifetime more of wonderful ahead. ✨
-      </div>
-
-      <div style="margin:30px 0;">
-        <h2 style="color:#ffd700; font-size:2rem;">Our Memories</h2>
-        <p style="color:#f0d6ff; margin:15px 0;">Every moment with you is a treasure 💎</p>
-        <div style="width:280px; margin:20px auto; border-radius:15px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.6);">
-          <img src="https://picsum.photos/280/200?random=1" alt="Memory" style="width:100%; display:block;">
-        </div>
-      </div>
-
-      <!-- Surprise -->
-      <div style="text-align:center; margin-top:40px;">
-        <h2 style="color:#ff69b4; font-size:2.4rem;">A Little Surprise</h2>
-        <p style="color:#ffd700;">You deserve something special 🎀</p>
-        <div class="gift" id="gift">
-          <svg width="170" height="170" viewBox="0 0 180 180">
-            <rect x="20" y="40" width="140" height="100" rx="10" fill="#ff1493"/>
-            <rect x="20" y="120" width="140" height="30" rx="8" fill="#ff69b4"/>
-            <rect x="45" y="40" width="90" height="15" fill="#ffd700"/>
-            <rect x="82" y="55" width="16" height="85" fill="#ffd700"/>
-            <polygon points="80,130 90,145 100,130" fill="#ff4500"/>
-          </svg>
-        </div>
-        <p style="color:#ffd700;">Click the gift 🎁</p>
-      </div>
-    </div>
-
-    <!-- Final Message -->
-    <div class="final" id="finalMessage">
-      <div style="font-size:2.6rem; color:#ff69b4;">Once again...</div>
-      <div style="font-size:4rem; font-weight:bold; background:linear-gradient(90deg,#ff9a9e,#fad0c4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin:20px 0;">
-        Happy Birthday
-      </div>
-      <div style="font-size:1.7rem;">May all your dreams come true ✨</div>
-      <div style="font-size:5rem; margin-top:25px;">❤️</div>
-    </div>
-  </div>
-
-
-
-
-
+<!-- Floating hearts -->
 <script>
-  function createStars() {
-    const starsContainer = document.getElementById('stars');
-    for (let i = 0; i < 130; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      const size = Math.random() * 3 + 1;
-      star.style.width = `${size}px`;
-      star.style.height = `${size}px`;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.animationDelay = `-${Math.random() * 4}s`;
-      starsContainer.appendChild(star);
-    }
-  }
-
-  // Helper to show one text at a time
-  function showText(id) {
-    document.querySelectorAll('.text').forEach(t => t.classList.remove('show'));
-    document.getElementById(id).classList.add('show');
-  }
-
-  function startSequence() {
-    createStars();
-
-    setTimeout(() => showText('text1'), 800);
-    setTimeout(() => showText('text2'), 3500);
-    setTimeout(() => showText('text3'), 6500);
-    setTimeout(() => showText('text4'), 9500);
-
-    // Show Birthday Card
-    setTimeout(() => {
-      document.querySelectorAll('.text').forEach(t => t.classList.remove('show'));
-      const card = document.getElementById('birthdayCard');
-      card.style.opacity = '1';
-      card.style.transform = 'translate(-50%, -50%) scale(1)';
-    }, 13000);
-
-    // Scroll Content
-    setTimeout(() => {
-      document.getElementById('birthdayCard').style.opacity = '0';
-
-      const scrollContent = document.getElementById('scrollContent');
-      scrollContent.classList.add('show');
-    }, 20000);
-
-    // Final Message
-    setTimeout(() => {
-      document.getElementById('scrollContent').style.opacity = '0';
-      document.getElementById('finalMessage').classList.add('show');
-    }, 42000);
-  }
-
-  // Gift Click
-  document.getElementById('gift').addEventListener('click', () => {
-    const gift = document.getElementById('gift');
-    gift.style.transition = 'transform 0.8s';
-    gift.style.transform = 'rotate(720deg) scale(1.3)';
-    
-    setTimeout(() => {
-      alert("🎉 Surprise! You are my greatest gift in life! ✨\nHappy 18th Birthday!");
-      gift.style.transform = 'rotate(0deg) scale(1)';
-    }, 900);
-  });
-
-  function createFloatingHearts() {
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart-float');
-      heart.textContent = '❤️';
-      heart.style.left = Math.random() * 100 + '%';
-      heart.style.animationDuration = (Math.random() * 6 + 7) + 's';
-      document.querySelector('.container').appendChild(heart);
-
-      setTimeout(() => heart.remove(), 15000);
-    }, 1200);
-  }
-
-  window.onload = () => {
-    startSequence();
-    createFloatingHearts();
-  };
+for(let i=0;i<25;i++){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(3+Math.random()*5)+"s";
+  heart.style.fontSize=(15+Math.random()*25)+"px";
+  document.body.appendChild(heart);
+}
 </script>
 
+<div class="card">
+  <h1>🎂 Happy Birthday!</h1>
+  <h2>Dear <span id="name">Friend</span></h2>
+  
+  <p class="message">
+    Wishing you a day filled with love, joy, and happiness.  
+    May all your dreams come true and your smile shine forever ✨
+  </p>
 
+  <button onclick="showSurprise()">Click for Surprise 🎁</button>
 
- </body>
+  <div class="surprise" id="surprise">
+    🎉 You are amazing! Stay blessed always 💖
+  </div>
+</div>
+
+<script>
+function showSurprise(){
+  document.getElementById("surprise").style.display="block";
+}
+</script>
+
+</body>
 </html>
