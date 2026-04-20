@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffe6ef,
+    #ffe6ef 20px,
+    #ffd6e8 20px,
+    #ffd6e8 40px
+  );
+}
+
+/* TITLE */
+.title {
+  text-align: center;
+  margin-top: 50px;
+}
+.title h1 {
+  font-size: 50px;
+  margin: 0;
+  animation: pop 1s ease;
+}
+.happy {
+  color: white;
+  -webkit-text-stroke: 2px black;
+}
+.birthday {
+  color: red;
+  -webkit-text-stroke: 2px black;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
+/* DATE */
+.date {
+  margin: 20px auto;
+  background: pink;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  animation: fadeIn 2s;
+}
+
+/* PHOTO */
+.photo {
+  position: absolute;
+  right: 50px;
+  top: 150px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 6px solid pink;
+  overflow: hidden;
+  animation: glow 3s infinite;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* NAME */
+.name {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: pink;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: 'Pacifico', cursive;
+}
+
+/* BUTTON */
+.btn {
+  position: absolute;
+  bottom: 120px;
+  right: 40px;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(45deg, red, pink);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+
+/* BALLOONS */
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 60px;
+  background: red;
+  border-radius: 50%;
+  animation: floatUp linear infinite;
+}
+.balloon::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: black;
+  left: 50%;
+  top: 60px;
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: #fff5e6;
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  animation: pop 0.5s ease;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* ANIMATIONS */
+@keyframes floatUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-110vh); }
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 10px pink; }
+  50% { box-shadow: 0 0 25px red; }
+  100% { box-shadow: 0 0 10px pink; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">
+  <h1>
+    <span class="happy">Happy</span><br>
+    <span class="birthday">Birthday 🎉</span>
+  </h1>
+</div>
+
+<div class="date">5 April 1996 ✨</div>
+
+<div class="photo">
+  <img src="pf.jpeg">
+</div>
+
+<div class="name">Rashmiiii ❤️</div>
+
+<button class="btn" onclick="openCard()">💌 Click here Rashmiiii</button>
+
+<!-- BALLOONS -->
+<script>
+for(let i=0;i<10;i++){
+  let b=document.createElement("div");
+  b.className="balloon";
+  b.style.left=Math.random()*100+"%";
+  b.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(b);
+}
+</script>
+
+<!-- POPUP CARD -->
+<div class="popup" id="popup">
+  <div class="card">
+    <div class="close" onclick="closeCard()">×</div>
+    <h3>To you ❤️</h3>
+    <p>
+    My love. You are a very special girl. I always silently thank you for coming into my life.
+    Today, I wish you all the best, lots of health, and lots of joy.
+    I always hope we will celebrate many more birthdays like this together.
+    <br><br>
+    Happy birthday to you ❤️
+    </p>
+    <button class="btn">Send Wish Back</button>
+  </div>
+</div>
+
+<script>
+function openCard(){
+  document.getElementById("popup").style.display="flex";
+}
+function closeCard(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+</body>
+</html>
