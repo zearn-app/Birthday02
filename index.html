@@ -1,146 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday 🎉</title>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Happy Birthday 🎉</title>  
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">  
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+<style>  
+* {  
+  margin: 0;  
+  padding: 0;  
+  box-sizing: border-box;  
+  font-family: 'Poppins', sans-serif;  
+}  
 
-body {
-  height: 100vh;
+body {  
+  height: 100vh;  
+  background: linear-gradient(135deg, #ffd6e8, #ffeaea);  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+  overflow: hidden;  
+}  
+
+/* ===== LOADER ===== */
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(135deg, #ffd6e8, #ffeaea);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  flex-direction: column;
+  z-index: 9999;
 }
 
-/* Floating hearts */
-.heart {
-  position: absolute;
+.loader h1 {
   color: #ff4d6d;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.7;
+  margin-top: 15px;
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #fff;
+  border-top: 5px solid #ff4d6d;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-/* Card */
-.card {
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 40px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  animation: fadeIn 2s ease;
+@keyframes spin {
+  100% { transform: rotate(360deg); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px);}
-  to { opacity: 1; transform: translateY(0);}
-}
+/* Floating hearts */  
+.heart {  
+  position: absolute;  
+  color: #ff4d6d;  
+  font-size: 20px;  
+  animation: floatUp 6s linear infinite;  
+  opacity: 0.7;  
+}  
 
-h1 {
-  font-size: 2.5rem;
-  color: #ff4d6d;
-  margin-bottom: 10px;
-}
+@keyframes floatUp {  
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }  
+  50% { opacity: 1; }  
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }  
+}  
 
-h2 {
-  font-weight: 300;
-  margin-bottom: 20px;
-}
+/* Card */  
+.card {  
+  background: rgba(255,255,255,0.8);  
+  backdrop-filter: blur(10px);  
+  border-radius: 20px;  
+  padding: 40px;  
+  text-align: center;  
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);  
+  animation: fadeIn 2s ease;  
+}  
 
-.message {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 25px;
-}
+@keyframes fadeIn {  
+  from { opacity: 0; transform: translateY(30px);}  
+  to { opacity: 1; transform: translateY(0);}  
+}  
 
-/* Button */
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  background: #ff4d6d;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
+h1 {  
+  font-size: 2.5rem;  
+  color: #ff4d6d;  
+  margin-bottom: 10px;  
+}  
 
-button:hover {
-  background: #e63956;
-  transform: scale(1.05);
-}
+h2 {  
+  font-weight: 300;  
+  margin-bottom: 20px;  
+}  
 
-/* Hidden surprise */
-.surprise {
-  display: none;
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #ff4d6d;
-  animation: pop 0.5s ease;
-}
+.message {  
+  font-size: 1rem;  
+  color: #555;  
+  margin-bottom: 25px;  
+}  
 
-@keyframes pop {
-  from { transform: scale(0); }
-  to { transform: scale(1); }
-}
-</style>
-</head>
+/* Button */  
+button {  
+  padding: 10px 20px;  
+  border: none;  
+  border-radius: 25px;  
+  background: #ff4d6d;  
+  color: white;  
+  font-size: 1rem;  
+  cursor: pointer;  
+  transition: 0.3s;  
+}  
 
-<body>
+button:hover {  
+  background: #e63956;  
+  transform: scale(1.05);  
+}  
 
-<!-- Floating hearts -->
-<script>
-for(let i=0;i<25;i++){
-  let heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="❤";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(3+Math.random()*5)+"s";
-  heart.style.fontSize=(15+Math.random()*25)+"px";
-  document.body.appendChild(heart);
-}
-</script>
+/* Hidden surprise */  
+.surprise {  
+  display: none;  
+  margin-top: 20px;  
+  font-size: 1.2rem;  
+  color: #ff4d6d;  
+  animation: pop 0.5s ease;  
+}  
 
-<div class="card">
-  <h1>🎂 Happy Birthday!</h1>
-  <h2>Dear <span id="name">Friend</span></h2>
-  
-  <p class="message">
-    Wishing you a day filled with love, joy, and happiness.  
-    May all your dreams come true and your smile shine forever ✨
-  </p>
+@keyframes pop {  
+  from { transform: scale(0); }  
+  to { transform: scale(1); }  
+}  
+</style>  
+</head>  
 
-  <button onclick="showSurprise()">Click for Surprise 🎁</button>
+<body>  
 
-  <div class="surprise" id="surprise">
-    🎉 You are amazing! Stay blessed always 💖
-  </div>
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+  <h1>Loading...</h1>
 </div>
 
-<script>
-function showSurprise(){
-  document.getElementById("surprise").style.display="block";
-}
-</script>
+<!-- Floating hearts -->  
+<script>  
+for(let i=0;i<25;i++){  
+  let heart=document.createElement("div");  
+  heart.className="heart";  
+  heart.innerHTML="❤";  
+  heart.style.left=Math.random()*100+"vw";  
+  heart.style.animationDuration=(3+Math.random()*5)+"s";  
+  heart.style.fontSize=(15+Math.random()*25)+"px";  
+  document.body.appendChild(heart);  
+}  
+</script>  
 
-</body>
+<div class="card">  
+  <h1>🎂 Happy Birthday!</h1>  
+  <h2>Dear <span id="name">Friend</span></h2>  
+    
+  <p class="message">  
+    Wishing you a day filled with love, joy, and happiness.    
+    May all your dreams come true and your smile shine forever ✨  
+  </p>  
+
+  <button onclick="showSurprise()">Click for Surprise 🎁</button>  
+
+  <div class="surprise" id="surprise">  
+    🎉 You are amazing! Stay blessed always 💖  
+  </div>  
+</div>  
+
+<script>  
+function showSurprise(){  
+  document.getElementById("surprise").style.display="block";  
+}
+
+/* LOADER → REDIRECT */
+window.onload = function() {
+  setTimeout(function(){
+    window.location.href = "main.html";
+  }, 3000); // 3 seconds
+};
+</script>  
+
+</body>  
 </html>
