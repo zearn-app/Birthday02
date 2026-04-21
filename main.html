@@ -53,7 +53,7 @@ body {
   animation: fadeIn 2s;
 }
 
-/* PHOTO */
+/* PHOTO (UPDATED ANIMATION) */
 .photo {
   position: absolute;
   right: 50px;
@@ -63,7 +63,9 @@ body {
   border-radius: 50%;
   border: 6px solid pink;
   overflow: hidden;
-  animation: glow 3s infinite;
+  animation: glow 3s infinite, slideUp 1.5s ease forwards;
+  transform: translateY(200px);
+  opacity: 0;
 }
 .photo img {
   width: 100%;
@@ -82,11 +84,12 @@ body {
   font-family: 'Pacifico', cursive;
 }
 
-/* BUTTON */
+/* BUTTON (CENTER + ANIMATION) */
 .btn {
   position: absolute;
+  left: 50%;
   bottom: 120px;
-  right: 40px;
+  transform: translateX(-50%) scale(0);
   padding: 12px 25px;
   border-radius: 30px;
   border: none;
@@ -94,7 +97,7 @@ body {
   color: white;
   font-size: 16px;
   cursor: pointer;
-  animation: pulse 2s infinite;
+  animation: pulse 2s infinite, btnIn 1.5s ease forwards;
 }
 
 /* BALLOONS */
@@ -148,6 +151,16 @@ body {
   cursor: pointer;
 }
 
+/* MEMORY SECTION */
+.memory {
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffe0eb;
+  border-radius: 15px;
+  font-size: 14px;
+  animation: fadeIn 2s;
+}
+
 /* ANIMATIONS */
 @keyframes floatUp {
   from { transform: translateY(0); }
@@ -178,6 +191,20 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* NEW ANIMATIONS */
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes btnIn {
+  to {
+    transform: translateX(-50%) scale(1);
+  }
 }
 </style>
 </head>
@@ -224,6 +251,13 @@ for(let i=0;i<10;i++){
     <br><br>
     Happy birthday to you ❤️
     </p>
+
+    <!-- MEMORY ADDED -->
+    <div class="memory">
+      💭 <b>Memory:</b><br>
+      The day we first smiled at each other… still my favorite moment ❤️
+    </div>
+
     <button class="btn">Send Wish Back</button>
   </div>
 </div>
