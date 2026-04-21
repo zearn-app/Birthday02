@@ -65,6 +65,25 @@ body {
   font-size: 1rem;
 }
 
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+  width: 250px;
+  max-width: 70vw;
+  height: 8px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #ff4d6d;
+  border-radius: 20px;
+  transition: width 0.2s linear;
+}
+
 /* Floating hearts */    
 .heart {    
   position: absolute;    
@@ -150,12 +169,17 @@ button:hover {
   
 <!-- LOADER -->  
 <div class="loader" id="loader">  
-  <!-- Replace this GIF URL if you want -->
   <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Loading">  
   
   <div>
     <h1>🎁 Wait for Surprise...</h1>
     <p>Something special is coming 💖</p>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
   </div>
 </div>  
   
@@ -192,7 +216,20 @@ for(let i=0;i<25;i++){
 function showSurprise(){    
   document.getElementById("surprise").style.display="block";    
 }  
-  
+
+/* PROGRESS ANIMATION */
+let progress = 0;
+let bar = document.getElementById("progressBar");
+
+let interval = setInterval(() => {
+  progress += 2; // speed
+  bar.style.width = progress + "%";
+
+  if(progress >= 100){
+    clearInterval(interval);
+  }
+}, 60);
+
 /* LOADER → REDIRECT */  
 window.onload = function() {  
   setTimeout(function(){  
